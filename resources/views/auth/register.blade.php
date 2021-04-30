@@ -1,9 +1,9 @@
-<?php
-    use App\Models\Branch;
-    $branches = Branch::all();
-?>
-@extends('layouts.app')
 
+@extends('layouts.app')
+@section('styles')
+    <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
+
+@endsection
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -46,7 +46,7 @@
 
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Регистэрийн дугаар') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Регистрийн дугаар') }}</label>
 
                             <div class="col-md-6">
                                 <input id="register" type="text" class="form-control @error('register') is-invalid @enderror" name="register" value="{{ old('register') }}"  required autocomplete="register"  autofocus>
@@ -80,7 +80,7 @@
 
                             <div class="col-md-6">
                      
-                                <select name="lesson_type" id="lesson_type" class="form-control">
+                                <select name="lesson_type" id="lesson_type" class="form-control" required>
                                 <option value="">-- Сургалтын төрлөө сонгоно уу! --</option>
                                 
                                 <option value="Шинэ жолоочийн сургалт">
@@ -102,7 +102,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Салбар') }}</label>
 
                             <div class="col-md-6">
-                            <select name="branch" id="branch" class="form-control">
+                            <select name="branch" id="branch" class="form-control" required>
                                 <option value="">-- Салбараа сонгоно уу! --</option>
                                 @foreach($branches as $branch)
                                 <option value="{{ $branch->name }}">
@@ -144,7 +144,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-outline-success">
                                     {{ __('Бүртгүүлэх') }}
                                 </button>
                             </div>

@@ -55,13 +55,13 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
-            'register' => array('required', 'regex:/[А-Я]{2}\d{8}$/', 'unique:users'),
+            'register' => array('required', 'regex:/(^([ФЦУЖЭНГШҮЗКЪЙЫБӨАХРОЛДПЯЧЁСМИТЬВЮЩЕ]{2}+)(\d{8}+)$)/u', 'unique:users'),
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'lesson_type' => ['required', 'string'],
             'branch' => ['required', 'string'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
-    }
+    }   
 
     /**
      * Create a new user instance after a valid registration.
@@ -73,6 +73,7 @@ class RegisterController extends Controller
     {
         
         $branch_id = Branch::select('id')->where('name', $data['branch'])->get()->first();
+        $userRole = Role::where('name' , 'user')->get()->first();
         $user = User::create([
             'name' => $data['name'],
             'lastname' => $data['lastname'],
@@ -82,10 +83,11 @@ class RegisterController extends Controller
             'branch' => $data['branch'],
             'branch_id' => $branch_id->id,
             'password' => Hash::make($data['password']),
+            'role' => $userRole->name,
+            'role_id' =>$userRole->id,
         ]);
-        $role = Role::select('id')->where('name', 'user')->first();
 
-        $user->roles()->attach($role);
+
     
         return $user;
     }

@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Question;
 use Intervention\Image\Facades\Image;
-
+use DB;
 
 class QuestionController extends Controller
 {
@@ -28,7 +28,13 @@ class QuestionController extends Controller
 
     function create()
     {
-        return view('admin.questions.create');
+        $questions =  Question::all();
+        $subs = Question::select('sub')
+             ->groupBy('sub')
+             ->get();
+             
+             
+        return view('admin.questions.create')->with('subs', $subs);
     }
     function store(Request $request)
     {
@@ -45,8 +51,10 @@ class QuestionController extends Controller
             $imagepath = $request->file('image')->store('uploads', 'public');
         }
         
+      
         
         $question = Question::create([
+            'type' => $request['question_type'],
             'sub' => $request['sub'],
             'question' => $request['question'],
             'image' => $imagepath,
@@ -88,11 +96,11 @@ class QuestionController extends Controller
 
         if($question->save())
         {
-            $request->session()->flash('success',$question->id . ' -р асуултын мэдээлэл шинэчлэгдлээ.');
+            $request->session()->flash('success', 'Асуултын мэдээлэл шинэчлэгдлээ.');
         }
         else
         {
-            $request->session()->flash('error', 'There was an error updating user');
+            $request->session()->flash('error', 'Асуулт шинэчлэхэд алдаа гарлаа.');
         }
 
         return redirect()->route('admin.questions.index');

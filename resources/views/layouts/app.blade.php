@@ -15,16 +15,21 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
     @yield('styles')
 </head>
+@livewireStyles
 <body>
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
+            @yield('more')
+        
             @guest
                 <a class="navbar-brand d-flex" href="{{ url('/') }}">
                     <div><img src="/svg/logo.svg" alt="" style="height: 60px;" class="pr-3"></div>
@@ -65,11 +70,29 @@
                             </li>
                         @endif
                     @else
-                        @can('is-payed')
-                        <a href="/durem" class="nav-link">Дүрэм</a>
-                        <a href="/test" class="nav-link">Дүрмийн тест</a>
+                  
+                        
+                        @can('hasToken')
+                        
+                        <a href="{{ route('durem')  }}" class="nav-link">Дүрэм</a>
+                            <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                               Дүрмийн тест
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                
+                                    <a class="dropdown-item" href="{{ route('test.sub.index') }}">
+                                        Сэдэвчилсэн тест
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('test.exam.index') }}">
+                                        Шалгалтын тест
+                                    </a>
+                            </div>
+                            </li>
                         @endcan()
-                        @can('is-user')
+                        @can('user')
                         <a href="#" class="nav-link">Дүрэм</a>
                         <a href="#" class="nav-link">Дүрмийн тест</a>
                         @endcan
@@ -82,22 +105,24 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                @can('is-user')
+                                @can('actual-user')
                                     <a class="dropdown-item" href="{{route('profile.show', Auth::user())}}">
-                                        Edit profile
+                                        Профайл
                                     </a>
                                 @endcan
-                                @can('manage-users')
+                                
+                                @can('manage-user')
                                     <a class="dropdown-item" href="{{route('admin.users.index')}}">
-                                        User Management
+                                        Хяналтын самбар
                                     </a>
                                 @endcan
+                                
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    {{ __('Гарах') }}
                                 </a>
-
+                                
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
@@ -110,12 +135,15 @@
     </nav>
 
     <main>
-        <div class="container">
+        <div class="container_main">
             @include('partials.alerts')
         </div>
-
+        
         @yield('content')
     </main>
+
 </div>
+
+@livewireScripts
 </body>
 </html>

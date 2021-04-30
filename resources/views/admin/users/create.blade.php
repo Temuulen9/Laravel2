@@ -45,7 +45,7 @@
 
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Регистэрийн дугаар') }}</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Регистрийн дугаар') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="register" type="text" class="form-control @error('register') is-invalid @enderror" name="register" value="{{ old('register') }}"  required autocomplete="register"  autofocus>
@@ -101,7 +101,7 @@
                             <div class="col-md-6">
                             <select name="branch" id="branch" class="form-control">
 
-                                @can('delete-users')
+                                @can('owner')
                                 <option value="">-- Салбараа сонгоно уу! --</option>
                                 @foreach($branches as $branch)
                                 <option value="{{ $branch->name }}">
@@ -110,7 +110,7 @@
                                 @endforeach
                                 @endcan
 
-                                @can('is-admin')
+                                @can('admin')
                                 <option value="{{ Auth::user()->branch }}">{{ Auth::user()->branch }}</option>
                         
                                 @endcan
@@ -147,7 +147,7 @@
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-outline-success">
                                         Хэрэглэгч нэмэх
                                     </button>
                                 </div>

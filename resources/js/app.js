@@ -3,7 +3,7 @@ require('./bootstrap');
 
 window.Vue = require('vue').default;
 
-Vue.component('examplecomponent', require('./components/ExampleComponent.vue').default);
+Vue.component('timer', require('./components/Timer.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -12,9 +12,5 @@ Vue.component('examplecomponent', require('./components/ExampleComponent.vue').d
  */
 
 const app = new Vue({
-    el: '#app',
-    data :
-        {
-            text1 : 'vue js test text'
-        }
+    el: '#app'
 });

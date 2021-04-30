@@ -1,0 +1,16 @@
+.profile {
+    margin: auto;
+    width: 50%;
+}
+.card {
+    margin-top: 20px;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+a {
+    color: black;
+}

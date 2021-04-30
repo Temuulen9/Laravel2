@@ -1,0 +1,10 @@
+.more span {
+    font-size: 36px !important;
+    display: none;
+    cursor: pointer;
+}
+@media screen and (max-width: 1200px) {
+    .more span {
+        display: block;
+    }
+}

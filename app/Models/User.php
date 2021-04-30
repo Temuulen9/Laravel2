@@ -24,7 +24,9 @@ class  User extends Authenticatable
         'lesson_type',
         'branch',
         'password',
-        'branch_id'
+        'branch_id',
+        'role',
+        'role_id'
     ];
 
     /**
@@ -46,29 +48,39 @@ class  User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function Roles()
-    {
-        return $this->belongsToMany('App\Models\Role');
-    }
 
-    public function hasAnyRoles($roles)
+    public function hasRole()
     {
-        if($this->roles()->whereIn('name', $roles)->first())
-        {
-            return true;
-        }
-        return false;
-    }
-    public function hasRole($role)
-    {
-        if($this->roles()->where('name', $role)->first())
-        {
-            return true;
-        }
-        return false;
-    }
+        return $this->belongsTo('App\Models\Role', 'id');
+    }   
+    
     public function hasBranch()
     {
         return $this->belongsTo('App\Models\Branch');
     }
+
+    public function hasResults()
+    {
+        return $this->hasMany('App\Models\Result');
+    }
+
+    public static function search($searchname, $searchlastname, $searchreg, $searchtype)
+    {
+        return empty($searchname) && empty($searchlastname) && empty($searchreg) && empty($searchtype) ? static::query()
+            : static::query()->where('lastname', 'like', '%'.$searchname.'%')
+                ->Where('name', 'like', '%'.$searchlastname.'%')
+                ->Where('register', 'like', '%'.$searchreg.'%')
+                ->Where('lesson_type', 'like', '%'.$searchtype.'%');
+    }
+
+    public static function search_with_branch($branch_name ,$searchname, $searchlastname, $searchreg, $searchtype)
+    {
+        return empty($searchname) && empty($searchlastname) && empty($searchreg) && empty($searchtype) ? static::query()->where('branch', 'like', '%'.$branch_name.'%')
+            : static::query()->where('branch', 'like', '%'.$branch_name.'%')
+                ->where('lastname', 'like', '%'.$searchname.'%')
+                ->Where('name', 'like', '%'.$searchlastname.'%')
+                ->Where('register', 'like', '%'.$searchreg.'%')
+                ->Where('lesson_type', 'like', '%'.$searchtype.'%');
+    }
+
 }

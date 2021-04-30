@@ -28,19 +28,28 @@
                                                         <td><img src="/storage/{{ $branch->image }}" alt="" width="100" height="100"></td>
                                                         <td>{{ $branch->phone_number }}</td>
                                                         <td>{{ $branch->location }}</td>
-                                                        <td>
-                                                            @can('edit-users')
-                                                                <a href="{{ route('admin.branches.edit', $branch) }}"><button type="button" class="btn btn-primary float-left">Edit</button></a>
-                                                            @endcan
-                                                            @can('delete-users')
-
-                                                                <form action="{{ route('admin.branches.destroy', $branch) }}" method="POST" class="float-left">
-                                                                    @csrf
-                                                                    {{ method_field('DELETE') }}
-                                                                    <button type="submit" class="btn btn-warning">Delete</button>
-                                                                </form>
-                                                            @endcan
-                                                        </td>
+                                                        <td style = "display: flex; align-items: center">
+                                                        @can('owner')
+                                                        <a href="{{ route('admin.branches.edit', $branch) }}">
+                                                        <span class="material-icons">edit</span>
+                                                        </a>
+                                                        @endcan 
+                                                  
+                                                        @can('owner')
+                                                    
+                                                        <form action="{{ route('admin.branches.destroy', $branch) }}" method="POST" class="float-left" onsubmit = "return confirm('Салбарыг устгах уу?')">
+                                                            @csrf
+                                                            {{ method_field('DELETE') }}
+                                                            <button type="submit" class="btn">
+                                                            <span class="material-icons">
+                                                            delete
+                                                            </span>
+                                                            </button>
+                                                            
+                                                        </form>
+                                                    @endcan
+                                                </td>
+                                                        
                                                     </tr>
                                             @endforeach
                                             </tbody>

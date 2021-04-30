@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Branch;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class BranchesController extends Controller
@@ -72,8 +73,8 @@ class BranchesController extends Controller
     {
         $users = Branch::find($branch->id)->hasUsers;
         return view('admin.branches.show', [
-            'users' => $users,
             'branch' => $branch,
+            'users' => $users,
         ]);
     }
 
@@ -86,7 +87,9 @@ class BranchesController extends Controller
      */
     public function edit(Branch $branch)
     {
-        //
+        return view('admin.branches.edit')->with([
+            'branch'=> $branch
+        ]);
     }
 
     /**
@@ -98,8 +101,32 @@ class BranchesController extends Controller
      */
     public function update(Request $request, Branch $branch)
     {
-        //
-    }
+
+      
+        $data = request()->validate([
+            'name' => ['string', 'required'],
+            'image' => ['image'],
+            'phone_number' => ['regex:/\b\d{8}$/'],
+            'location' => ['string', 'required']
+        ]);
+
+        $imagepath = $request->file('image')->store('uploads', 'public');
+
+        $branch->name = $request->name;
+        $branch->image = $imagepath;
+        $branch->phone_number = $request->phone_number;
+        $branch->location = $request->location;
+        if($branch->save())
+        {
+            $request->session()->flash('success',$branch->name . ' салбарын мэдээлэл шинэчлэгдлээ.');
+        }
+        else
+        {
+            $request->session()->flash('error', $branch->name . ' салбарын мэдээлэлийг шинэчлэхэд алдаа гарлаа.');
+        }
+
+        return redirect()->route('admin.branches.index');
+    }   
 
     /**
      * Remove the specified resource from storage.
@@ -109,7 +136,9 @@ class BranchesController extends Controller
      */
     public function destroy(Branch $branch)
     {
+        User::where('branch_id', $branch->id)->delete();
         $branch->delete();
+
         return redirect()->route('admin.branches.index');
     }
 }

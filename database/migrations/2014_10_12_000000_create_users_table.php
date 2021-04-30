@@ -23,6 +23,9 @@ class CreateUsersTable extends Migration
             $table->string('lesson_type');
             $table->string('branch');
             $table->integer('branch_id')->nullable();
+            $table->string('role');
+            $table->integer('role_id')->nullable();
+            $table->timestamp('verified_date')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

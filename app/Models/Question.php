@@ -10,6 +10,8 @@ class Question extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id',
+        'type',
         'sub',
         'question',
         'image',
@@ -20,4 +22,12 @@ class Question extends Model
         'option5',
         'answer'
     ];
+
+    public static function search($searchtype, $searchsub, $searchques)
+    {
+        return empty($searchtype) && empty($searchsub) && empty($searchques) ? static::query()
+            : static::query()->where('type', 'like', '%'.$searchtype.'%')
+                ->where('sub', 'like', '%'.$searchsub.'%')
+                ->where('question', 'like', '%'.$searchques.'%');
+    }
 }

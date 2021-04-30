@@ -1,0 +1,44 @@
+.test_container {
+    display: flex;
+    justify-content: center;
+}
+.card-body {
+    display: block;
+    text-align: center;
+    justify-content: center;
+}
+.answers {
+    display: block;
+    text-align: left;
+    justify-content: center;
+    padding-left: 12%;
+    padding-bottom: 5%;
+}
+
+.timer {
+    display: block;
+    text-align: center;
+    margin-top: 2%;
+}
+button {
+    margin-bottom: 5%;
+}
+.results {
+    display: block;
+    text-align: left;
+    justify-content: center;
+    margin-top: 2%;
+    padding-left: 10%;
+    padding-bottom: 2%;
+    margin-right: 10%;
+}
+.card-body {
+    margin: auto;
+    width: 60%;
+}
+@media screen and (max-width: 640px) {
+    .card-body {
+        margin: auto;
+        width: 90%;
+    }
+}

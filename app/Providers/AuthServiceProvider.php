@@ -25,40 +25,50 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-
-
-        Gate::define('manage-users', function($user)
-        {
-            return $user->hasAnyRoles(['admin', 'owner']);
-        });
-
-        Gate::define('edit-users', function($user)
-        {
-            return $user->hasAnyRoles(['admin', 'owner']);
-        });
-
-        Gate::define('delete-users', function($user)
-        {
-            return $user->hasRole('owner');
-        });
-
-        Gate::define('is-user', function($user)
-        {
-            return $user->hasRole('user');
-        });
-
-        Gate::define('is-admin', function($user)
-        {
-            return $user->hasRole('admin');
-        });
         
-        Gate::define('is-payed', function($user)
+        Gate::define('hasToken', function($user)
         {
-            return $user->hasRole('payed_user');
+           
+            return $user->role == "owner" || $user->role == "admin" || $user->role == "payed_user";
         });
-        Gate::define('any-user', function($user)
+
+        Gate::define('actual-user', function($user)
         {
-            return $user->hasAnyRoles(['user', 'payed_user']);
+           
+            return $user->role == "user" || $user->role == "payed_user";
         });
+
+        Gate::define('manage-user', function($user)
+        {
+           
+            return $user->role == "owner" || $user->role == "admin";
+        });
+
+        Gate::define('owner', function($user)
+        {
+           
+            return $user->role == "owner";
+        });
+
+  
+        Gate::define('admin', function($user)
+        {
+            
+            return $user->role == "admin";
+        });
+
+        Gate::define('user', function($user)
+        {
+            
+            return $user->role == "user";
+          
+        });
+
+  
+        Gate::define('payed-user', function($user)
+        {
+            return $user->role == "payed_user";
+        });
+    
     }
 }

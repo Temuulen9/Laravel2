@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\Role;
 class LoginController extends Controller
 {
     /*
@@ -41,7 +41,8 @@ class LoginController extends Controller
 
     public function redirectTo()
     {
-        if(Auth::user()->hasAnyRoles(['admin', 'owner']))
+  
+        if(Auth::user()->role == 'owner' || Auth::user()->role == 'admin' )
         {
             $this->redirectTo= route('admin.users.index');
             return $this->redirectTo;

@@ -5,15 +5,24 @@
 @extends('layouts.app')
 @section('styles')
     <link href="{{ asset('css/sidebar.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/dashboard.js') }}" defer></script>
+    
 @endsection
 
 @section('content')
     <div class="main_container">
-        <div class="sidebar">
+        @section('more')
+            <div class="more">
+            <span class="material-icons" onclick="openNav()">
+            toc
+            </span>
+            </div>
+        @endsection
+        <div class="sidebar" id = "main_sidebar">
                 <div class="wrapper">
                     <nav id="sidebar">
                         <div class="sidebar-header">
-                            Dashboard
+                            Хяналтын самбар
                         </div>
                         <ul class="lisst-unstyled components">
                             <li>
@@ -23,10 +32,11 @@
                             <li>
                                 <a href="{{route('admin.users.create' )}}">Хэрэглэгч нэмэх</a>
                             </li>
-                            @can('delete-users')
-                            <li>
-                                <a href="#">Админ нэмэх</a>  <!-- admin nemeh heseg -->
-                            </li>  
+                            @can('owner')
+                            <li>    
+                                <a href="{{route('admins')}}">Админ</a>
+                            </li>
+                       
                             <li>
                                 <a href="{{route('admin.branches.index' )}}">Салбарууд</a>
                                 <!--
@@ -58,14 +68,11 @@
                             <li>
                                 <a href="{{ route('admin.questions.create') }}">Асуулт нэмэх</a>
                             </li>
-                            <li>
-                                <a href="">Ангилал</a>
-                            </li>
                         </ul>
                     </nav>
                 </div>
         </div>
-        <div class="show_content">
+        <div class="show_content" id = "show_content">
             @yield('user_content')
         </div>
     </div>

@@ -5,15 +5,44 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Edit question {{$question->id}}</div>
+                    <div class="card-header"> {{$question->id}}-р Асуулт шинэчлэх</div>
 
                     <div class="card-body">
                         <form action="{{ route('admin.questions.update', $question) }}"  method = "POST" enctype="multipart/form-data">
                         @csrf
                             {{ method_field('PUT') }}
+
+                            <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Асуултын төрөл') }}</label>
+
+                            <div class="col-md-6">
+                     
+                                <select name="question_type" id="question_type" class="form-control">
+                                <option value="">-- Асуултын төрлөө сонгоно уу! --</option>
+                               
+                                    @if($question->type == "Шинэ жолоочийн сургалт")
+                                        <option value="{{ $question->type }}" selected>
+                                        {{ $question->type }}
+                                        </option>
+                                        <option value="Ангилал ахиулах сургалт">
+                                        Ангилал ахиулах сургалт
+                                        </option>
+                                    @else
+                                        <option value="{{ $question->type }}" selected>
+                                        {{ $question->type }}
+                                        </option>
+                                        <option value="Шинэ жолоочийн сургалт">
+                                        Шинэ жолоочийн сургалт
+                                        </option>
+                                    @endif
+                                
+                            </select>
+                            </div>
+                        </div>
+
                         <div class="form-group row">
 
-                                <label for="sub" class="col-md-4 col-form-label text-md-right">{{ __('Ангилал') }}</label>
+                                <label for="sub" class="col-md-4 col-form-label text-md-right">{{ __('Сэдэв') }}</label>
                                 <div class="col-md-6">
                                     <input id="sub" type="text" class="form-control @error('sub') is-invalid @enderror" name="sub" value="{{ $question->sub }}" required autocomplete="sub" autofocus>
 
@@ -93,7 +122,7 @@
 
                                 <label for="option3" class="col-md-4 col-form-label text-md-right">{{ __('Хариулт 3') }}</label>
                                 <div class="col-md-6">
-                                    <input id="option3" type="text" class="form-control @error('option3') is-invalid @enderror" name="option3" value="{{ $question->option3 }}" required autocomplete="option3" autofocus>
+                                    <input id="option3" type="text" class="form-control @error('option3') is-invalid @enderror" name="option3" value="{{ $question->option3 }}"  autocomplete="option3" autofocus>
 
                                     @error('option3')
                                     <span class="invalid-feedback" role="alert">
@@ -108,7 +137,7 @@
 
                                 <label for="option4" class="col-md-4 col-form-label text-md-right">{{ __('Хариулт 4') }}</label>
                                 <div class="col-md-6">
-                                    <input id="option4" type="text" class="form-control @error('option4') is-invalid @enderror" name="option4" value="{{ $question->option4 }}" required autocomplete="option4" autofocus>
+                                    <input id="option4" type="text" class="form-control @error('option4') is-invalid @enderror" name="option4" value="{{ $question->option4 }}"  autocomplete="option4" autofocus>
 
                                     @error('option4')
                                     <span class="invalid-feedback" role="alert">
@@ -123,7 +152,7 @@
 
                                 <label for="option5" class="col-md-4 col-form-label text-md-right">{{ __('Хариулт 5') }}</label>
                                 <div class="col-md-6">
-                                    <input id="option5" type="text" class="form-control @error('option5') is-invalid @enderror" name="option5" value="{{ $question->option5 }}" required autocomplete="option5" autofocus>
+                                    <input id="option5" type="text" class="form-control @error('option5') is-invalid @enderror" name="option5" value="{{ $question->option5 }}"  autocomplete="option5" autofocus>
 
                                     @error('option5')
                                     <span class="invalid-feedback" role="alert">
@@ -150,8 +179,8 @@
                                 
                             </div>
                             
-                            <button type="submit" class="btn btn-primary">
-                                Update
+                            <button type="submit" class="btn btn-outline-success">
+                                Шинэчлэх
                             </button>
 
                         </form>

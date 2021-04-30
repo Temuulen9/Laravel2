@@ -1,5 +1,8 @@
 @extends('layouts.app')
+@section('styles')
+    <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
 
+@endsection
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -12,7 +15,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="register" class="col-md-4 col-form-label text-md-right">{{ __('Регистэрийн дугаар') }}</label>
+                            <label for="register" class="col-md-4 col-form-label text-md-right">{{ __('Регистрийн дугаар') }}</label>
 
                             <div class="col-md-6">
                                 <input id="register" type="register" class="form-control @error('register') is-invalid @enderror" name="register" value="{{ old('register') }}" required autocomplete="register" autofocus>
@@ -42,12 +45,12 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-outline-success">
                                     {{ __('Нэвтрэх') }}
                                 </button>
 
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    <a class="btn btn-link" style = "color:black" href="{{ route('password.request') }}">
                                         {{ __('Нууц үгээ мартсан уу?') }}
                                     </a>
                                 @endif
