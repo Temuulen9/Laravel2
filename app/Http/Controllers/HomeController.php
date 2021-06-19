@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use DB;
+use App\Models\Branch;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $branchs = Branch::all();
+        return view('home')->with('branchs', $branchs);
     }
 }

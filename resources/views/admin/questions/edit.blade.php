@@ -8,7 +8,7 @@
                     <div class="card-header"> {{$question->id}}-р Асуулт шинэчлэх</div>
 
                     <div class="card-body">
-                        <form action="{{ route('admin.questions.update', $question) }}"  method = "POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.questions.update', $question) }}" method = "POST" enctype="multipart/form-data" onsubmit = "return confirm('Асуултын мэдээллийг шинэчлэх үү?')">
                         @csrf
                             {{ method_field('PUT') }}
 
@@ -81,7 +81,11 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
-                                    <input id="image" type="file" class="form-control-file @error('image') is-invalid @enderror" value="{{ $question->image }}" name="image" autofocus>
+                                    @if($question->image != null)
+                                        <img src="/storage/{{ $question->image }}" alt="" width="100" height="100">
+                                    @endif
+                                    
+                                    <input id="image" type="file" class="form-control-file @error('image') is-invalid @enderror" value="{{old('image'), $question->image }}" name="image" autofocus>
                                 </div>
                                 
                                 

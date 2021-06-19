@@ -17,7 +17,7 @@
                                 <label for="lastname" class="col-md-4 col-form-label text-md-right">{{ __('Овог') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname" autofocus>
+                                    <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="off" autofocus>
 
                                     @error('lastname')
                                     <span class="invalid-feedback" role="alert">
@@ -31,7 +31,7 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Нэр') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="off" autofocus>
 
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -48,7 +48,7 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Регистрийн дугаар') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="register" type="text" class="form-control @error('register') is-invalid @enderror" name="register" value="{{ old('register') }}"  required autocomplete="register"  autofocus>
+                                    <input id="register" type="text" class="form-control @error('register') is-invalid @enderror" name="register" value="{{ old('register') }}"  required autocomplete="off"  autofocus>
 
                                     @error('register')
                                     <span class="invalid-feedback" role="alert">
@@ -62,7 +62,7 @@
                                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('И-Мэйл хаяг') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="off">
 
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -127,7 +127,7 @@
                                 <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Нууц үг') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="off">
 
                                     @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -141,7 +141,7 @@
                                 <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Нууц үг баталгаажуулалт') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="off">
                                 </div>
                             </div>
 

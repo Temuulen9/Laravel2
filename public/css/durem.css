@@ -9,3 +9,18 @@
 .durem h3 {
     text-align: center;
 }
+
+video {
+    padding: 20px 0 10px 0px;
+    width: 100%;
+    height: 400px;
+}
+
+@media only screen and (max-width: 550px) {
+
+    .durem {
+
+        width: 80%;
+
+    }
+  }

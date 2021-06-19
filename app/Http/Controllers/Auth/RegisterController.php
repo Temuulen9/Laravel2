@@ -55,7 +55,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
-            'register' => array('required', 'regex:/(^([ФЦУЖЭНГШҮЗКЪЙЫБӨАХРОЛДПЯЧЁСМИТЬВЮЩЕ]{2}+)(\d{8}+)$)/u', 'unique:users'),
+            'register' => array('required',   'regex:/(^([ФЦУЖЭНГШҮЗКЪЙЫБӨАХРОЛДПЯЧЁСМИТЬВЮЩЕ]{2}+)(\d{8}+)$)/u', 'unique:users'),
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'lesson_type' => ['required', 'string'],
             'branch' => ['required', 'string'],

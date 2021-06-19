@@ -134,6 +134,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'register' => [
+            'not_regex' => 'Регистр буруу байна.'
+        ]
     ],
 
     /*

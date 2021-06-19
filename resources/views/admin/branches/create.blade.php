@@ -13,7 +13,7 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Нэр') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="off" autofocus >
 
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -27,7 +27,7 @@
                                 <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Зураг') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image" value="{{ old('image') }}" required autocomplete="image" autofocus>
+                                    <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image" value="{{ old('image') }}" required autocomplete="off" autofocus>
 
                                     @error('image')
                                     <span class="invalid-feedback" role="alert">
@@ -44,7 +44,7 @@
                                 <label for="phone_number" class="col-md-4 col-form-label text-md-right">{{ __('Холбогдох утасны дугаар') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="phone_number" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}"  required autocomplete="phone_number"  autofocus>
+                                    <input id="phone_number" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}"  required autocomplete="off"  autofocus>
 
                                     @error('phone_number')
                                     <span class="invalid-feedback" role="alert">
@@ -58,7 +58,7 @@
                                 <label for="location" class="col-md-4 col-form-label text-md-right">{{ __('Хаяг') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="location" type="text" class="form-control @error('location') is-invalid @enderror" name="location" value="{{ old('location') }}" required autocomplete="location">
+                                    <input id="location" type="text" class="form-control @error('location') is-invalid @enderror" name="location" value="{{ old('location') }}" required autocomplete="off">
 
                                     @error('location')
                                     <span class="invalid-feedback" role="alert">

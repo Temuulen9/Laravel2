@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Branch;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $branchs = Branch::all();
+    return view('welcome')->with('branchs', $branchs);
 });
 
 Auth::routes();

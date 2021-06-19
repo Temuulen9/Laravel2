@@ -8,7 +8,7 @@
                     <div class="card-header">{{$branch->name}} - салбарын мэдээлэл шинэчлэх</div>
 
                     <div class="card-body">
-                        <form action="{{ route('admin.branches.update', $branch) }}"  method = "POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.branches.update', $branch) }}"  method = "POST" enctype="multipart/form-data" onsubmit = "return confirm('Салбарын мэдээллийг шинэчлэх үү?')">
 
 
                         <div class="form-group row">

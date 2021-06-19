@@ -11,13 +11,15 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet">
     <!-- Styles -->
+    
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
@@ -146,4 +148,20 @@
 
 @livewireScripts
 </body>
+<script> 
+	$(document).ready(function () {
+    $("a#surgalt").bind('click', function () {
+        $('html,body').animate({
+        scrollTop: $("#one").offset().top},
+        'slow');
+    });
+});
+$(document).ready(function () {
+    $("a#salbar").bind('click', function () {
+        $('html,body').animate({
+        scrollTop: $("#two").offset().top},
+        'slow');
+    });
+});
+	</script>
 </html>
